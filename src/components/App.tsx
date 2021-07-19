@@ -14,7 +14,7 @@ function App() {
       .then((res) => res.json() as Promise<Sensor[]>)
       .then((data) => setSensors(data))
       .finally(() => setSensorsLoaded(true));
-  }, [sensors]);
+  }, []);
 
   return (
     <>
