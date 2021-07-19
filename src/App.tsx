@@ -1,24 +1,22 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React, { useEffect, useState } from "react";
+import { Sensor } from "./types";
+import SensorList from "./SensorList";
 
 function App() {
+  const [sensors, setSensors] = useState<Sensor[]>([]);
+
+  useEffect(() => {
+    fetch("sensors.json")
+      .then((res) => res.json() as Promise<Sensor[]>)
+      .then((data) => setSensors(data));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="app">
+      <header>
+        <h1>Sensors</h1>
       </header>
+      <SensorList sensors={sensors} />
     </div>
   );
 }
