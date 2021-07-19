@@ -24,7 +24,7 @@ function SensorMap({ center }: SensorMapProps) {
               features: [new Feature(new Point(coordinates))],
             }),
             style: new Style({
-              geometry: new Circle(coordinates, 8),
+              geometry: new Circle(coordinates, 50),
               stroke: new Stroke({ color: "red", width: 3 }),
               fill: new Fill({ color: "green" }),
             }),
@@ -32,7 +32,7 @@ function SensorMap({ center }: SensorMapProps) {
         ],
         view: new View({
           center: coordinates,
-          zoom: 18,
+          zoom: 15,
         }),
         target: "map",
       });
@@ -41,7 +41,7 @@ function SensorMap({ center }: SensorMapProps) {
     loadMap();
   }, [center]);
 
-  return <div id="map" style={{ width: "100%", height: "400px" }} />;
+  return <div id="map" style={{ marginTop: 10, height: "400px" }} />;
 }
 
 export default SensorMap;

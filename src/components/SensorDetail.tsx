@@ -7,10 +7,18 @@ import {
   CardContent,
   Typography,
 } from "@material-ui/core";
+import styled from "styled-components";
 import SensorContext from "./SensorContext";
 import { Sensor } from "../types";
 import SensorMap from "./SensorMap";
 
+const SensorDetailBox = styled(Card)`
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  min-width: 60%;
+  max-width: 80%;
+`;
 function SensorDetail() {
   const { id } = useParams<{ id: string }>();
   const { sensors } = useContext(SensorContext);
@@ -21,12 +29,11 @@ function SensorDetail() {
   }, [id, sensors]);
 
   return selectedSensor ? (
-    <Card>
+    <SensorDetailBox>
       <CardContent>
-        <Typography variant="body1">Sensor {selectedSensor.name}</Typography>
-        <Typography variant="body2">
-          Coordinates {selectedSensor.coordinates[0]}{" "}
-          {selectedSensor.coordinates[1]}
+        <Typography variant="h5">{selectedSensor.name}</Typography>
+        <Typography variant="body1" style={{ marginTop: 5 }}>
+          <em>{`(${selectedSensor.coordinates[0]}, ${selectedSensor.coordinates[1]})`}</em>
         </Typography>
         <SensorMap center={selectedSensor.coordinates} />
       </CardContent>
@@ -35,7 +42,7 @@ function SensorDetail() {
           Back
         </Button>
       </CardActions>
-    </Card>
+    </SensorDetailBox>
   ) : null;
 }
 

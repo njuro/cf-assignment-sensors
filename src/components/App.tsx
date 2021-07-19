@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { CircularProgress } from "@material-ui/core";
+import { CircularProgress, Typography } from "@material-ui/core";
 import { Sensor } from "../types";
 import RouterSwitch from "./RouterSwitch";
 import SensorContext from "./SensorContext";
@@ -19,7 +19,9 @@ function App() {
   return (
     <>
       <header>
-        <h1>Sensors</h1>
+        <Typography variant="h1" style={{ textAlign: "center" }}>
+          Sensors
+        </Typography>
       </header>
       <main>
         <Router>
